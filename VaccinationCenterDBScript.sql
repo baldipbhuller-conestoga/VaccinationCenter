@@ -1,0 +1,153 @@
+USE [master]
+GO
+/****** Object:  Database [VaccinationCenter]    Script Date: 18 Aug 2021 11:17:39 pm ******/
+CREATE DATABASE [VaccinationCenter]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'VaccinationCenter', FILENAME = N'D:\Program Files\MSSQL15.SQLEXPRESS\MSSQL\DATA\VaccinationCenter.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'VaccinationCenter_log', FILENAME = N'D:\Program Files\MSSQL15.SQLEXPRESS\MSSQL\DATA\VaccinationCenter_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [VaccinationCenter] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [VaccinationCenter].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [VaccinationCenter] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [VaccinationCenter] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [VaccinationCenter] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [VaccinationCenter] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [VaccinationCenter] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [VaccinationCenter] SET  MULTI_USER 
+GO
+ALTER DATABASE [VaccinationCenter] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [VaccinationCenter] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [VaccinationCenter] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [VaccinationCenter] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [VaccinationCenter] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [VaccinationCenter] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [VaccinationCenter] SET QUERY_STORE = OFF
+GO
+USE [VaccinationCenter]
+GO
+/****** Object:  Table [dbo].[Account]    Script Date: 18 Aug 2021 11:17:39 pm ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Account](
+	[AccountID] [int] IDENTITY(1,1) NOT NULL,
+	[AccountType] [varchar](20) NULL,
+	[Username] [varchar](50) NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Fname] [varchar](50) NULL,
+	[Mname] [varchar](50) NULL,
+	[Lname] [varchar](50) NULL,
+	[Birthdate] [date] NULL,
+	[City] [varchar](50) NULL,
+	[PostalCode] [varchar](50) NULL,
+ CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+(
+	[AccountID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Booking]    Script Date: 18 Aug 2021 11:17:39 pm ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Booking](
+	[BookingID] [int] IDENTITY(1,1) NOT NULL,
+	[AccountID] [int] NOT NULL,
+	[ReferenceNumber] [varchar](50) NULL,
+	[ClinicID] [int] NOT NULL,
+	[DoseType] [int] NULL,
+	[AppointmentDate] [date] NULL,
+	[AppointmentTime] [time](7) NULL,
+ CONSTRAINT [PK_Booking] PRIMARY KEY CLUSTERED 
+(
+	[BookingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Clinic]    Script Date: 18 Aug 2021 11:17:39 pm ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Clinic](
+	[ClinicID] [int] IDENTITY(1,1) NOT NULL,
+	[LocationName] [varchar](50) NULL,
+	[PostalCode] [varchar](50) NULL,
+	[Capacity] [int] NULL,
+ CONSTRAINT [PK_Clinic] PRIMARY KEY CLUSTERED 
+(
+	[ClinicID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Booking]  WITH CHECK ADD  CONSTRAINT [FK_Booking_AccountID] FOREIGN KEY([AccountID])
+REFERENCES [dbo].[Account] ([AccountID])
+GO
+ALTER TABLE [dbo].[Booking] CHECK CONSTRAINT [FK_Booking_AccountID]
+GO
+ALTER TABLE [dbo].[Booking]  WITH CHECK ADD  CONSTRAINT [FK_Booking_ClinicID] FOREIGN KEY([ClinicID])
+REFERENCES [dbo].[Clinic] ([ClinicID])
+GO
+ALTER TABLE [dbo].[Booking] CHECK CONSTRAINT [FK_Booking_ClinicID]
+GO
+USE [master]
+GO
+ALTER DATABASE [VaccinationCenter] SET  READ_WRITE 
+GO
