@@ -39,5 +39,7 @@ namespace VaccinationCenter
                 MessageBox.Show("Account Register Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+       
     }
 }
