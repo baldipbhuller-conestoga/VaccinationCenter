@@ -21,5 +21,12 @@ namespace VaccinationCenter
         {
             InitializeComponent();
         }
+
+        private void btn_loginClick(object sender, RoutedEventArgs e)
+        {
+            LoginScreen dashboard = new LoginScreen();
+            dashboard.Show();
+            this.Close();
+        }
     }
 }

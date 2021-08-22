@@ -20,15 +20,15 @@
             <Label x:Name="LoginTxt" Content="LOGIN" HorizontalAlignment="Center"  Style="{StaticResource MaterialDesignLabel}" materialDesign:HintAssist.Hint="LOGIN" FontSize="24" FontWeight="Bold" FontFamily="Gadugi" Foreground="White"></Label>
             <Border Background="White" Margin="10 20" CornerRadius="8">
                 <StackPanel Margin="25">
-                    <TextBox Text="{Binding UserName}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
-                    <TextBox Text="{Binding Password}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    <TextBox x:Name="txtUserName" Text="{Binding UserName}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    <TextBox x:Name="TxtPassword" Text="{Binding Password}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     <ComboBox Margin="15" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Role" Text="{Binding Role}">
                         <ComboBoxItem Content="Customer"/>
                         <ComboBoxItem Content="Admin"/>
                     </ComboBox>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Margin="15 50" Content="CANCEL"/>
-                        <Button x:Name="ButtonSignUp" Margin="15 50" Content="LOGIN" />
+                        <Button x:Name="btnExit" Margin="15 50" Content="CANCEL" Click="btnExit_Click"/>
+                        <Button x:Name="btn_login" Margin="15 50" Content="LOGIN" Click="btnlogin_Click" />
                     </StackPanel>
                 </StackPanel>
             </Border>
