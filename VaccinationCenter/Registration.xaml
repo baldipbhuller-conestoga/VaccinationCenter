@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VaccinationCenter"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="800" Width="500" WindowStyle="None" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize" >
+        mc:Ignorable="d" Height="800" Width="500" WindowStyle="None" WindowStartupLocation="Manual" ShowInTaskbar="False" ResizeMode="CanMinimize" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="51*"/>
@@ -42,20 +42,17 @@
 
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="UserBadge" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username " Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <TextBox x:Name="txtUsername" Text="{Binding Path=Username, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username " Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
                         <PasswordBox x:Name="txtPassword" Margin="10 0" materialDesign:HintAssist.Hint="********" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
-                        <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
-                        <PasswordBox x:Name="txtConfirmPassword" Margin="10 0" materialDesign:HintAssist.Hint="Confirm Password"  Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" TextInput="confirm_Passward" />
-                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="Human" Width="25" Height="25" Foreground="White"/>
                         <ComboBox x:Name="comboSelectionRole" Margin="10 0" materialDesign:HintAssist.Hint="Admin" Foreground="White" Width="250" BorderBrush="White" >
-                            <ComboBoxItem Content="User" IsSelected="True" Background="#FF4A426E" Foreground="White"  BorderBrush="Black" FontFamily="Arial Black" FontWeight="Bold" />
+                            <ComboBoxItem Content="User"  Background="#FF4A426E" Foreground="White"  BorderBrush="Black" FontFamily="Arial Black" FontWeight="Bold" />
                             <ComboBoxItem Content="Admin" Foreground="White" Background="#FF4A426E" BorderBrush="Black" FontFamily="Segoe UI Black" FontWeight="Bold" />
                         </ComboBox>
                     </StackPanel>

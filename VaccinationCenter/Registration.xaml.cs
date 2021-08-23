@@ -59,10 +59,6 @@ namespace VaccinationCenter
             }
         }
 
-        private void confirm_Passward(object sender, TextCompositionEventArgs e)
-        {
-
-        }
-    
+       
     }
 }

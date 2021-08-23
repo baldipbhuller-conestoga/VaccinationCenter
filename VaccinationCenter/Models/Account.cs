@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace VaccinationCenter.Models
 {
@@ -25,7 +26,17 @@ namespace VaccinationCenter.Models
 
         public int AccountID { get => accountID; set => accountID = value; }
         public AccountTypes AccountType { get => accountType; set => accountType = value; }
-        public string Username { get => username; set => username = value; }
+        public string Username {
+            get { return username; }
+            set {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException(": Username is the required field.");
+                }
+                username = value;
+            } 
+        }
+
         public string Password { get => password; set => password = value; }
         public string FName { get => fName; set => fName = value; }
         public string MName { get => mName; set => mName = value; }

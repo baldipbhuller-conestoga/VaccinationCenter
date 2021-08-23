@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,11 +23,11 @@ namespace VaccinationCenter
     /// </summary>
     public partial class MainWindow : Window
     {
-        Account acc = new Account();
+        Controller accController;
         public MainWindow()
         {
             InitializeComponent();
-            txtUserName.Text = acc.Username;
+            txtUserName.Text = accController.LoggedinAccount.Username;
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -33,13 +35,48 @@ namespace VaccinationCenter
             Application.Current.Shutdown();
         }
 
-        private void btn_InsertRecods(object sender, RoutedEventArgs e)
+       
+        public void LoadGrid()
         {
+            accController.LoadClinics();
 
+            DataTable dataTable = ToDataTable(accController.BookAppointment);
+
+            dataGrid.ItemsSource = dataTable.DefaultView;
+        }
+
+        private DataTable ToDataTable(Func<string, int, DateTime, int> bookAppointment)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        public bool isValid()
+        {
+            
+            if (txtBirthDate.Text == string.Empty)
+            {
+                MessageBox.Show("Date of birth is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (comboBox_dose.SelectedIndex == -1)
+            {
+                MessageBox.Show("Dosage is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (txtTimeSlot.Text == string.Empty)
+            {
+                MessageBox.Show("Time slot is not selected !", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            return true;
         }
         public void clearData()
         {
-            txtBirthDate.DisplayDateStart = DateTime.Today;
+            txtBirthDate.Text = "";
             comboBox_dose.SelectedIndex=-1;
             comboBox_dose.SelectedIndex=-1;
         }
@@ -47,6 +84,11 @@ namespace VaccinationCenter
         private void btn_clear(object sender, RoutedEventArgs e)
         {
             clearData();
+        }
+
+        private void bookappointment_btn(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
