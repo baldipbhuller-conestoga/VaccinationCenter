@@ -23,5 +23,9 @@ namespace VaccinationCenter.Models
             this.Capacity = capacity;
         }
 
+        public Clinic()
+        {
+
+        }
     }
 }

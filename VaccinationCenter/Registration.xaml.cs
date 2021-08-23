@@ -38,11 +38,15 @@ namespace VaccinationCenter
         {
             try
             {
-                bool isSuccess = controller.RegisterAccount(comboSelectionRole.Text,txtUsername.Text,txtPassword.Password,txtFirstName.Text,"",txtLastName.Text,DateTime.Now,"","");
+                int registerResult = controller.RegisterAccount(comboSelectionRole.Text,txtUsername.Text,txtPassword.Password,txtFirstName.Text,"",txtLastName.Text,DateTime.Now,"","");
 
-                if (isSuccess)
+                if (registerResult >= 1)
                 {
                     MessageBox.Show("Account Registerd Successfully", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (registerResult == -1)
+                {
+                    MessageBox.Show("Username already existing", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
