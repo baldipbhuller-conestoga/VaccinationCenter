@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VaccinationCenter"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="600" Width="500" WindowStyle="None" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" >
+        mc:Ignorable="d" Height="800" Width="500" WindowStyle="None" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="51*"/>
@@ -17,7 +17,7 @@
                 <GradientStop Color="#FFFE8704" Offset="0" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Border Height="500" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#FF4A426E" Grid.RowSpan="2" >
+        <Border Height="750" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#FF4A426E" Grid.RowSpan="2" >
         </Border>
         <StackPanel Orientation="Horizontal" Grid.RowSpan="2">
             <StackPanel Width="500">
@@ -28,14 +28,21 @@
                         <TextBox x:Name="txtFirstName" Margin="10 0" materialDesign:HintAssist.Hint="Enter First Name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
+                        <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
+                        <TextBox x:Name="txMidName" Margin="10 0" materialDesign:HintAssist.Hint="Enter Middle Name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="UserBox" Width="25" Height="25" Foreground="White"/>
                         <TextBox x:Name="txtLastName" Margin="10 0" materialDesign:HintAssist.Hint="Enter Last Name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
-
+                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
+                        <materialDesign:PackIcon Kind="DateRange" Width="25" Height="25" Foreground="White"/>
+                        <DatePicker x:Name="txtBirthDate" Margin="10 0" materialDesign:HintAssist.Hint="Enter Birth Date" Foreground="White" Width="250" BorderBrush="White"  />
+                    </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="UserBadge" Width="25" Height="25" Foreground="White"/>
-                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <TextBox x:Name="txtUsername" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username " Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
@@ -52,7 +59,15 @@
                             <ComboBoxItem Content="Admin" Foreground="White" Background="#FF4A426E" BorderBrush="Black" FontFamily="Segoe UI Black" FontWeight="Bold" />
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Margin="10,29,10,5" >
+                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
+                        <materialDesign:PackIcon Kind="City" Width="25" Height="25" Foreground="White"/>
+                        <TextBox x:Name="txtCity" Margin="10 0" materialDesign:HintAssist.Hint="Enter City" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
+                        <materialDesign:PackIcon Kind="PostageStamp" Width="25" Height="25" Foreground="White"/>
+                        <TextBox x:Name="txtPostalCode" Margin="10 0" materialDesign:HintAssist.Hint="Enter Postal Code: N3L3W6" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    </StackPanel>
+                    <StackPanel Margin="10,50,10,5" >
                         <Button Width="100" Height="40" Style="{StaticResource MaterialDesignRaisedButton}" 
                          materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
                          Foreground="White" ToolTip="New User registration" x:Name="btnRegister"  Content="Register" RenderTransformOrigin="1.46,1.568" Click="btn_Register_Click" Margin="0,10,0,0"/>

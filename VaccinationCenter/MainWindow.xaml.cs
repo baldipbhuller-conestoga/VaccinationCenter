@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VaccinationCenter.Models;
 
 namespace VaccinationCenter
 {
@@ -20,11 +21,32 @@ namespace VaccinationCenter
     /// </summary>
     public partial class MainWindow : Window
     {
+        Account acc = new Account();
         public MainWindow()
         {
             InitializeComponent();
+            txtUserName.Text = acc.Username;
         }
 
-       
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btn_InsertRecods(object sender, RoutedEventArgs e)
+        {
+
+        }
+        public void clearData()
+        {
+            txtBirthDate.DisplayDateStart = DateTime.Today;
+            comboBox_dose.SelectedIndex=-1;
+            comboBox_dose.SelectedIndex=-1;
+        }
+
+        private void btn_clear(object sender, RoutedEventArgs e)
+        {
+            clearData();
+        }
     }
 }
