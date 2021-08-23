@@ -76,12 +76,32 @@ namespace VaccinationCenter.Models
                     acc.AccountType = (Account.AccountTypes) Enum.Parse(typeof(Account.AccountTypes), sqlDataReader[1].ToString());
                     acc.Username = sqlDataReader[2].ToString();
                     acc.Password = sqlDataReader[3].ToString();
-                    acc.FName = sqlDataReader[4].ToString();
-                    acc.MName = sqlDataReader[5].ToString();
-                    acc.LName = sqlDataReader[6].ToString();
-                    acc.Birthdate = sqlDataReader.GetDateTime(7);
-                    acc.City = sqlDataReader[8].ToString();
-                    acc.PostalCode = sqlDataReader[9].ToString();
+
+                    // null checks
+                    if (!sqlDataReader.IsDBNull(4))
+                    {
+                        acc.FName = sqlDataReader[4].ToString();
+                    }
+                    if (!sqlDataReader.IsDBNull(5))
+                    {
+                        acc.MName = sqlDataReader[5].ToString();
+                    }
+                    if (!sqlDataReader.IsDBNull(6))
+                    {
+                        acc.LName = sqlDataReader[6].ToString();
+                    }
+                    if (!sqlDataReader.IsDBNull(7))
+                    {
+                        acc.Birthdate = sqlDataReader.GetDateTime(7);
+                    }
+                    if (!sqlDataReader.IsDBNull(8))
+                    {
+                        acc.City = sqlDataReader[8].ToString();
+                    }
+                    if (!sqlDataReader.IsDBNull(9))
+                    {
+                        acc.PostalCode = sqlDataReader[9].ToString();
+                    }
                 }
 
                 sqlConn.Close();
@@ -303,6 +323,32 @@ namespace VaccinationCenter.Models
                 sqlCommand.ExecuteNonQuery();
 
                 sqlConn.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static int UpdateClinic(string locationName, string postalCode, int capacity,int id)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("UPDATE [Clinic] SET LocationName = @LocationName, PostalCode = @PostalCode,Capacity = @Capacity WHERE ClinicID = @ID", sqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters.AddWithValue("@LocationName", locationName);
+                sqlCommand.Parameters.AddWithValue("@PostalCode", postalCode);
+                sqlCommand.Parameters.AddWithValue("@Capacity", capacity);
+                sqlCommand.Parameters.AddWithValue("@ID", id);
+
+                sqlConn.Open();
+
+                int rowsUpdated = sqlCommand.ExecuteNonQuery();
+
+                sqlConn.Close();
+
+                return rowsUpdated;
             }
             catch (Exception e)
             {

@@ -19,6 +19,7 @@ namespace VaccinationCenter
 
         public List<Account> AccountList { get => accountList; set => accountList = value; }
         public List<Clinic> ClinicList { get => clinicList; set => clinicList = value; }
+        public Account LoggedinAccount { get => loggedinAccount; set => loggedinAccount = value; }
 
         // Do not allow controller to be created in other classes
         private Controller()
@@ -37,13 +38,13 @@ namespace VaccinationCenter
 
             if(acc != null)
             {
-                loggedinAccount = acc;
+                LoggedinAccount = acc;
 
-                if(loggedinAccount.AccountType == Account.AccountTypes.User)
+                if(LoggedinAccount.AccountType == Account.AccountTypes.User)
                 {
                     return 1;
                 }
-                else if (loggedinAccount.AccountType == Account.AccountTypes.Admin)
+                else if (LoggedinAccount.AccountType == Account.AccountTypes.Admin)
                 {
                     return 2;
                 }
@@ -122,7 +123,7 @@ namespace VaccinationCenter
 
             Clinic clinicFound = ClinicList.Find(c => c.LocationName == locationName);
 
-            int accID = loggedinAccount.AccountID;
+            int accID = LoggedinAccount.AccountID;
             int clID = clinicFound.ClinicID;
 
             string reference = GenerateReference();
@@ -158,6 +159,13 @@ namespace VaccinationCenter
             }
 
             return referenceNumber.ToString();
+        }
+
+        public int UpdateClinic(string locationName, string postalCode, int capacity, int id)
+        {
+            int resultRow = DBAccess.UpdateClinic(locationName, postalCode, capacity, id);
+
+            return resultRow;
         }
     }
 }
