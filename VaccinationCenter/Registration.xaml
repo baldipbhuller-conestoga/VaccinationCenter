@@ -48,7 +48,7 @@
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="Human" Width="25" Height="25" Foreground="White"/>
                         <ComboBox x:Name="comboSelectionRole" Margin="10 0" materialDesign:HintAssist.Hint="Admin" Foreground="White" Width="250" BorderBrush="White" >
-                            <ComboBoxItem Content="Customer" IsSelected="True" Background="#FF4A426E" Foreground="White"  BorderBrush="Black" FontFamily="Arial Black" FontWeight="Bold" />
+                            <ComboBoxItem Content="User" IsSelected="True" Background="#FF4A426E" Foreground="White"  BorderBrush="Black" FontFamily="Arial Black" FontWeight="Bold" />
                             <ComboBoxItem Content="Admin" Foreground="White" Background="#FF4A426E" BorderBrush="Black" FontFamily="Segoe UI Black" FontWeight="Bold" />
                         </ComboBox>
                     </StackPanel>

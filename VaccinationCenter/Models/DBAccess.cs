@@ -50,5 +50,49 @@ namespace VaccinationCenter.Models
             }
             
         }
+
+        public static Account RetrieveAccount(string username, string password, string role)
+        {
+            try
+            {
+                Account acc = null;
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Account] WHERE Username = @Username AND Password = @Password AND AccountType = @AccountType", sqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters.AddWithValue("@Username", username);
+                sqlCommand.Parameters.AddWithValue("@Password", password);
+                sqlCommand.Parameters.AddWithValue("@AccountType", role);
+
+                sqlConn.Open();
+
+                // returns the id of the data row added if successful, else returns null for failed insert
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                // only read 1 row
+                if (sqlDataReader.Read())
+                {
+                    acc = new Account();
+                    acc.AccountID = sqlDataReader.GetInt32(0);
+                    acc.AccountType = (Account.AccountTypes) Enum.Parse(typeof(Account.AccountTypes), sqlDataReader[1].ToString());
+                    acc.Username = sqlDataReader[2].ToString();
+                    acc.Password = sqlDataReader[3].ToString();
+                    acc.FName = sqlDataReader[4].ToString();
+                    acc.MName = sqlDataReader[5].ToString();
+                    acc.LName = sqlDataReader[6].ToString();
+                    acc.Birthdate = sqlDataReader.GetDateTime(7);
+                    acc.City = sqlDataReader[8].ToString();
+                    acc.PostalCode = sqlDataReader[9].ToString();
+                }
+
+                sqlConn.Close();
+
+                return acc;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
     }
 }

@@ -21,9 +21,9 @@
             <Border Background="White" Margin="10 20" CornerRadius="8">
                 <StackPanel Margin="25">
                     <TextBox x:Name="txtUserName" Text="{Binding UserName}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Username" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
-                    <TextBox x:Name="TxtPassword" Text="{Binding Password}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
-                    <ComboBox Margin="15" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Role" Text="{Binding Role}">
-                        <ComboBoxItem Content="Customer"/>
+                    <TextBox x:Name="txtPassword" Text="{Binding Password}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                    <ComboBox x:Name="cmbRole" Margin="15" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Role" Text="{Binding Role}">
+                        <ComboBoxItem Content="User"/>
                         <ComboBoxItem Content="Admin"/>
                     </ComboBox>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

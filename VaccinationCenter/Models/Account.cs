@@ -47,6 +47,9 @@ namespace VaccinationCenter.Models
             this.PostalCode = postalCode;
         }
 
+        public Account()
+        {
 
+        }
     }
 }

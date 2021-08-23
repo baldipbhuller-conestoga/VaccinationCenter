@@ -25,21 +25,6 @@ namespace VaccinationCenter
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Controller controller = new Controller();
-            bool isSuccess = controller.RegisterAccount();
-
-            if (isSuccess)
-            {
-                MessageBox.Show("Account Registerd Successfully", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("Account Register Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
        
     }
 }

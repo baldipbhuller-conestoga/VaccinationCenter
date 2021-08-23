@@ -19,9 +19,12 @@ namespace VaccinationCenter
     /// </summary>
     public partial class Registration : Window
     {
+        Controller controller;
+
         public Registration()
         {
             InitializeComponent();
+            controller = Controller.getInstance();
         }
 
         private void btn_loginClick(object sender, RoutedEventArgs e)
@@ -33,41 +36,23 @@ namespace VaccinationCenter
 
         private void btn_Register_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlcon = new SqlConnection(@"Data Source=LAPTOP-J7TM7QA2\SQLEXPRESS19;Initial Catalog=Conestoga1;Integrated Security=True");
             try
             {
-                if (sqlcon.State == System.Data.ConnectionState.Closed)
+                bool isSuccess = controller.RegisterAccount(comboSelectionRole.Text,txtUsername.Text,txtPassword.Password,txtFirstName.Text,"",txtLastName.Text,DateTime.Now,"","");
+
+                if (isSuccess)
                 {
-                    sqlcon.Open();
-                }
-
-                SqlCommand sqlcommands = new SqlCommand("SELECT * FROM [userINfo] WHERE userName=@Username AND Password=@Password", sqlcon);
-                sqlcommands.CommandType = CommandType.Text;
-                sqlcommands.Parameters.AddWithValue("@Username", txtUsername.Text);
-                sqlcommands.Parameters.AddWithValue("@Password", txtPassword.Password);
-                int count = Convert.ToInt32(sqlcommands.ExecuteScalar());
-
-                if (count == 1)
-                {
-                    MainWindow dashboard = new MainWindow();
-                    dashboard.Show();
-                    this.Close();
-
-                }
-                if (count == 2)
-                {
-                    AdminScreen_ClinicWindow dashboard = new AdminScreen_ClinicWindow();
-                    dashboard.Show();
-                    this.Close();
-
+                    MessageBox.Show("Account Registerd Successfully", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Wrong username and password");
+                    MessageBox.Show("Account Register Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
             }
-            catch (Exception ex) { MessageBox.Show("Somthing went wrong " + ex.Message); }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Somthing went wrong " + ex.Message); 
+            }
         }
 
         private void confirm_Passward(object sender, TextCompositionEventArgs e)
