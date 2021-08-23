@@ -28,26 +28,20 @@
                     <TextBlock Text="Clinics" Margin="10" Foreground="White" TextAlignment="Center" FontSize="40" FontFamily="Great Vibes"></TextBlock>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="Location" Width="35" Height="35" Foreground="White"/>
-                        <TextBox x:Name="txtLocationName" Margin="10 0" materialDesign:HintAssist.Hint="Enter Clinic Address" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <TextBox x:Name="txtLocationName" Margin="10 0" materialDesign:HintAssist.Hint="Enter Clinic Name" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
-                        <materialDesign:PackIcon Kind="City" Width="35" Height="35" Foreground="White"/>
-                        <ComboBox x:Name="City_combobox" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="City" Text="{Binding City}" Margin="10 0"  Foreground="White" Width="250" BorderBrush="White" >
-                            <ComboBoxItem Content="Woodstock"/>
-                            <ComboBoxItem Content="Waterloo"/>
-                        </ComboBox>
-                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="50,10,10,10"/>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="PostageStamp" Width="35" Height="35" Foreground="White"/>
                         <TextBox x:Name="txtPostalCode" Margin="10 0" materialDesign:HintAssist.Hint="Postal Code N2L3W6" Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="HumanCapacityIncrease" Width="35" Height="35" Foreground="White"/>
-                        <TextBox x:Name="txtTotalCapacity" Margin="10 0" materialDesign:HintAssist.Hint="Enter Clinic ID"  Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
+                        <TextBox x:Name="txtID" Margin="10 0" materialDesign:HintAssist.Hint="Enter Clinic ID"  Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448"  />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="50,10,10,10">
                         <materialDesign:PackIcon Kind="IdCard" Width="35" Height="35" Foreground="White"/>
-                        <TextBox x:Name="txtID" Margin="10 0" materialDesign:HintAssist.Hint="Enter Capacity"  Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <TextBox x:Name="txtTotalCapacity" Margin="10 0" materialDesign:HintAssist.Hint="Enter Capacity"  Foreground="White" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>
 
                 </StackPanel>
@@ -55,19 +49,16 @@
         </StackPanel>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Delete Clinic" x:Name="btn_Delete"  Content="Delete Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="417,52,459,109" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Delete Clinic" x:Name="btn_Delete"  Content="Delete Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="486,75,390,86" Grid.Row="1"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Clear record" x:Name="btnClear"  Content="Clear Record" RenderTransformOrigin="0.5,2.158" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="584,52,302,109" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Clear record" x:Name="btnClear"  Content="Clear Record" RenderTransformOrigin="0.5,2.158" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="674,75,212,86" Grid.Row="1"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Update record" x:Name="Update_btn"  Content="Update Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="238,52,632,109" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Update record" x:Name="Update_btn"  Content="Update Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="302,75,568,86" Grid.Row="1"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Insert clinic records" x:Name="InserButn"  Content="Insert Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="72,52,807,109" Grid.Row="1"/>
-        <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
-                        materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                        Foreground="White" ToolTip="Exit" x:Name="btnExit"  Content="Exit" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="760,52,96,109" Grid.Row="1" FontSize="16" Click="btnExit_Click"/>
+                    Foreground="White" ToolTip="Insert clinic records" x:Name="InserButn"  Content="Insert Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="110,75,769,86" Grid.Row="1"/>
 
     </Grid>
 </Window>
