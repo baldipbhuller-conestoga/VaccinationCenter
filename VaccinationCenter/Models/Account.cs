@@ -26,16 +26,7 @@ namespace VaccinationCenter.Models
 
         public int AccountID { get => accountID; set => accountID = value; }
         public AccountTypes AccountType { get => accountType; set => accountType = value; }
-        public string Username {
-            get { return username; }
-            set {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException(": Username is the required field.");
-                }
-                username = value;
-            } 
-        }
+       
 
         public string Password { get => password; set => password = value; }
         public string FName { get => fName; set => fName = value; }
@@ -44,6 +35,7 @@ namespace VaccinationCenter.Models
         public DateTime Birthdate { get => birthdate; set => birthdate = value; }
         public string City { get => city; set => city = value; }
         public string PostalCode { get => postalCode; set => postalCode = value; }
+        public string Username { get => username; set => username = value; }
 
         public Account(AccountTypes accountType, string username, string password, string fName, string mName, string lName, DateTime birthdate, string city, string postalCode)
         {
