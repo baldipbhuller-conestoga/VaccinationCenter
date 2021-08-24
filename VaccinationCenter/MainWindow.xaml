@@ -37,8 +37,7 @@
                         <DatePicker x:Name="appointmentDate" Height="40" Margin="10 0" Text="{Binding AppointmentDate}"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" materialDesign:HintAssist.Hint="Appointment Date" Foreground="White" Width="250" BorderBrush="White" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="30,10,10,10">
-                       <ComboBox x:Name="comobox_Location" Margin="10 0" materialDesign:HintAssist.Hint="Select Location" Foreground="White" Width="250" BorderBrush="White" >
-                            <ComboBoxItem Content="Waterloo"  Background="#FF4A426E" Foreground="White"  BorderBrush="Black" FontFamily="Arial Black" FontWeight="Bold" />
+                        <ComboBox x:Name="cmb_locations" Margin="10 0" materialDesign:HintAssist.Hint="Select Location" Foreground="White" Width="250" BorderBrush="White" >
                             <!--Load this combobox with .Add();-->
                         </ComboBox>
                     </StackPanel>
@@ -67,7 +66,7 @@
                         Foreground="White" ToolTip="Book Apoointment" x:Name="check_ClinicAvailable_btn"  Content="Book Appointment" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="59,34,847,183" Grid.Row="1" FontSize="16" Click="bookappointment_btn"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                         materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                        Foreground="White" ToolTip="Cancel Appointment" x:Name="cancel_btn"  Content="Cancel Appointment" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="452,34,418,183" Grid.Row="1" FontSize="16" StylusMove="delete_btn"/>
+                        Foreground="White" ToolTip="Cancel Appointment" x:Name="cancel_btn"  Content="Cancel Appointment" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="452,34,418,183" Grid.Row="1" FontSize="16" Click="cancel_btn_Click"/>
 
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                         materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 

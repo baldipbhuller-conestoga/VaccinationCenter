@@ -88,8 +88,21 @@ namespace VaccinationCenter
         }
         public void LoadBooking()
         {
-            BookingList = DBAccess.GetAllBookings();
+            BookingList = DBAccess.GetAllBookingsOfUser(LoggedinAccount.AccountID);
         }
+
+        public List<string> GetClinicLocationNames()
+        {
+            List<string> clinicNameList = new List<string>();
+
+            foreach (Clinic cl in ClinicList)
+            {
+                clinicNameList.Add(cl.LocationName);
+            }
+
+            return clinicNameList;
+        }
+
         public int AddClinic(string locationName, string postalCode, int capacity)
         {
             LoadClinics();

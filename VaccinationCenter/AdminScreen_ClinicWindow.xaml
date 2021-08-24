@@ -49,16 +49,16 @@
         </StackPanel>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Delete Clinic" x:Name="btn_Delete"  Content="Delete Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="486,75,390,86" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Delete Clinic" x:Name="btn_Delete"  Content="Delete Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="486,75,390,86" Grid.Row="1" Click="btn_Delete_Click"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Clear record" x:Name="btnClear"  Content="Clear Record" RenderTransformOrigin="0.5,2.158" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="674,75,212,86" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Clear record" x:Name="btnClear"  Content="Clear Record" RenderTransformOrigin="0.5,2.158" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="674,75,212,86" Grid.Row="1" Click="btnClear_Click"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Update record" x:Name="Update_btn"  Content="Update Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="302,75,568,86" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Update record" x:Name="Update_btn"  Content="Update Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="302,75,568,86" Grid.Row="1" Click="Update_btn_Click"/>
         <Button Height="45" Style="{StaticResource MaterialDesignRaisedButton}" 
                     materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" 
-                    Foreground="White" ToolTip="Insert clinic records" x:Name="InserButn"  Content="Insert Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="110,75,769,86" Grid.Row="1"/>
+                    Foreground="White" ToolTip="Insert clinic records" x:Name="InserButn"  Content="Insert Record" RenderTransformOrigin="1.46,1.568" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="110,75,769,86" Grid.Row="1" Click="InserButn_Click"/>
 
     </Grid>
 </Window>

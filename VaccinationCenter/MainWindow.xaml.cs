@@ -28,15 +28,14 @@ namespace VaccinationCenter
         {
             InitializeComponent();
             accController = Controller.getInstance();
-            LoadGrid();  
+            LoadGrid();
+            LoadLocations();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
-
        
         public void LoadGrid()
         {
@@ -45,6 +44,12 @@ namespace VaccinationCenter
             DataTable dataTable = ToDataTable(accController.BookingList);
 
             dataGrid.ItemsSource = dataTable.DefaultView;
+        }
+
+        public void LoadLocations()
+        {
+            accController.LoadClinics();
+            cmb_locations.ItemsSource = accController.GetClinicLocationNames();
         }
 
         public DataTable ToDataTable(List<Booking> items)
@@ -70,9 +75,6 @@ namespace VaccinationCenter
             return dataTable;
         }
 
-
-
-
         public bool isValid()
         {
            
@@ -95,7 +97,7 @@ namespace VaccinationCenter
 
             txtTimeSlot.Clear();
             txtID.Clear();
-            comobox_Location.SelectedIndex = -1;
+            cmb_locations.SelectedIndex = -1;
             txtDose.Text = "";
             
             
@@ -109,11 +111,21 @@ namespace VaccinationCenter
         private void bookappointment_btn(object sender, RoutedEventArgs e)
         {
                      
-            accController.BookAppointment(txtLocation.Text, int.Parse(txtDose.Text), DateTime.Parse(txtTimeSlot.Text), appointmentDate.SelectedDate.Value);
-            LoadGrid();
+            int bkgResult = accController.BookAppointment(cmb_locations.SelectedItem.ToString(), int.Parse(txtDose.Text), DateTime.Parse(txtTimeSlot.Text), appointmentDate.SelectedDate.Value);
+            
+
+            if (bkgResult >= 1)
+            {
+                LoadGrid();
+                MessageBox.Show("Booking Created Successfully", "Booking", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Booking Failed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void delete_btn(object sender, StylusEventArgs e)
+        private void cancel_btn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -122,7 +134,7 @@ namespace VaccinationCenter
                 if (!string.IsNullOrEmpty(txtID.Text) && int.TryParse(txtID.Text, out num))
                 {
 
-                    if (accController.RemoveClinic(Convert.ToInt32(txtID.Text)))
+                    if (accController.RemoveBooking(Convert.ToInt32(txtID.Text)))
                     {
                         LoadGrid();
                         MessageBox.Show("Booking Removed Successfully", "Clinic Remove", MessageBoxButton.OK, MessageBoxImage.Information);

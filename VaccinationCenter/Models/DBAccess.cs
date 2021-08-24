@@ -216,13 +216,14 @@ namespace VaccinationCenter.Models
             }
         }
 
-        public static List<Booking> GetAllBookings()
+        public static List<Booking> GetAllBookingsOfUser(int id)
         {
             try
             {
-                
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Booking]", sqlConn);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Booking] WHERE AccountID = @ID", sqlConn);
                 sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters.AddWithValue("@ID", id);
 
                 sqlConn.Open();
 
@@ -234,22 +235,18 @@ namespace VaccinationCenter.Models
                 // read all rows
                 while (sqlDataReader.Read())
                 {
-                    int BookingID = sqlDataReader.GetInt32(0);
-                    int AccountID = sqlDataReader.GetInt32(1);
-                    string ReferenceNo = sqlDataReader[2].ToString();
-                    int ClinicId = sqlDataReader.GetInt32(3);
-                    int DoseType = sqlDataReader.GetInt32(4);
+                    Booking bkg = new Booking();
+
+                    bkg.BookingID = sqlDataReader.GetInt32(0);
+                    bkg.AccountID = sqlDataReader.GetInt32(1);
+                    bkg.ReferenceNumber = sqlDataReader[2].ToString();
+                    bkg.ClinicID = sqlDataReader.GetInt32(3);
+                    bkg.DoseType = sqlDataReader.GetInt32(4);
                     TimeSpan AppointmentTime = (TimeSpan)sqlDataReader[6];
                     DateTime date = (DateTime)sqlDataReader[5];
-                    DateTime AppointmentDateTime = date + AppointmentTime;
+                    bkg.AppoinmentDateTime = date + AppointmentTime;
 
-
-
-
-
-                    Booking bk = new Booking(AccountID, ReferenceNo, ClinicId,DoseType, AppointmentDateTime);
-                    bookingList.Add(bk);
-
+                    bookingList.Add(bkg);
                 }
 
                 sqlConn.Close();

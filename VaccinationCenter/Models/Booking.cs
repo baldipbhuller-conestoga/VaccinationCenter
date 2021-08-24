@@ -13,6 +13,11 @@ namespace VaccinationCenter.Models
         private int doseType;
         private DateTime appoinmentDateTime;
 
+        public Booking()
+        {
+
+        }
+
         public Booking(int accountID, string referenceNumber, int clinicID, int doseType, DateTime appoinmentDateTime)
         {
             this.AccountID = accountID;
