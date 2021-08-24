@@ -21,7 +21,7 @@
         <Border Height="605" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#FF554C80" Grid.RowSpan="2" >
         </Border>
         <StackPanel Width="Auto">
-            <Label x:Name="DataGrid_Lable" Content="Available Clinics" HorizontalAlignment="Center" Width="643" VerticalContentAlignment="Top" FlowDirection="LeftToRight" Padding="4,7,4,4" FontSize="30" FontFamily="Great Vibes" Foreground="#DDFDFDFD" Margin="0,50,0,0"/>
+            <Label x:Name="DataGrid_Lable" Content="Booking History" HorizontalAlignment="Center" Width="643" VerticalContentAlignment="Top" FlowDirection="LeftToRight" Padding="4,7,4,4" FontSize="30" FontFamily="Great Vibes" Foreground="#DDFDFDFD" Margin="0,50,0,0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.RowSpan="1">
             <StackPanel Width="680">
@@ -36,17 +36,16 @@
                     <StackPanel Orientation="Horizontal" Margin="30,10,10,10">
                         <DatePicker x:Name="appointmentDate" Height="40" Margin="10 0" Text="{Binding AppointmentDate}"  Style="{StaticResource MaterialDesignFloatingHintDatePicker}" materialDesign:HintAssist.Hint="Appointment Date" Foreground="White" Width="250" BorderBrush="White" />
                     </StackPanel>
-
-
                     <StackPanel Orientation="Horizontal" Margin="30,10,10,10">
-                        <TextBox x:Name="txtBirthDate" Margin="10 0" materialDesign:HintAssist.Hint="Enter Birth Date" Foreground="White" Width="250" BorderBrush="White"  CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                       <ComboBox x:Name="comobox_Location" Margin="10 0" materialDesign:HintAssist.Hint="Select Location" Foreground="White" Width="250" BorderBrush="White" >
+                            <ComboBoxItem Content="Waterloo"  Background="#FF4A426E" Foreground="White"  BorderBrush="Black" FontFamily="Arial Black" FontWeight="Bold" />
+                            <!--Load this combobox with .Add();-->
+                        </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="30,10,10,10">
                         <TextBox x:Name="txtTimeSlot" Margin="10 0" materialDesign:HintAssist.Hint="Enter Time Slot: HH:mm" Foreground="White" Width="250" BorderBrush="White"   />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="30,10,10,10">
-                        <TextBox x:Name="txtLocation" Margin="10 0" materialDesign:HintAssist.Hint="Enter Location" Foreground="White" Width="250" BorderBrush="White"  CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
-                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal" Margin="30,10,10,10">
                         <TextBox x:Name="txtDose" Margin="10 0" materialDesign:HintAssist.Hint="Enter Dosage" Foreground="White" Width="250" BorderBrush="White"  CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
                     </StackPanel>

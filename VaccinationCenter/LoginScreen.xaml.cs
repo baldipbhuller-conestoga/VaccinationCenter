@@ -32,10 +32,43 @@ namespace VaccinationCenter
             Application.Current.Shutdown();
         }
 
+        public bool isValid()
+        {
+           
+           
+
+            if (txtUserName.Text == string.Empty)
+            {
+                MessageBox.Show("User name is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+
+
+            if (txtPassword.Text == string.Empty)
+            {
+                MessageBox.Show("Password is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (cmbRole.SelectedItem == null)
+            {
+                MessageBox.Show("Role Selection is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnlogin_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (!isValid())
+                {
+                    return;
+                }
+
                 int loginResult = controller.LoginAccount(txtUserName.Text, txtPassword.Text, cmbRole.Text);
 
                 if (loginResult == 1)

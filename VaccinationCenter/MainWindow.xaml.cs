@@ -75,12 +75,7 @@ namespace VaccinationCenter
 
         public bool isValid()
         {
-            
-            if (txtBirthDate.Text == string.Empty)
-            {
-                MessageBox.Show("Date of birth is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
-                return false;
-            }
+           
 
             if (txtDose.Text == string.Empty)
             {
@@ -97,9 +92,12 @@ namespace VaccinationCenter
         }
         public void clearData()
         {
-            txtBirthDate.Text = "";
-            txtLocation.Text = "";
+
+            txtTimeSlot.Clear();
+            txtID.Clear();
+            comobox_Location.SelectedIndex = -1;
             txtDose.Text = "";
+            
             
         }
 

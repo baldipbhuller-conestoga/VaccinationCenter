@@ -33,11 +33,63 @@ namespace VaccinationCenter
             dashboard.Show();
             this.Close();
         }
+        public bool isValid()
+        {
+            if (txtFirstName.Text == string.Empty)
+            {
+                MessageBox.Show("First Name is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
 
+            if (txtUsername.Text == string.Empty)
+            {
+                MessageBox.Show("User name is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (txtLastName.Text == string.Empty)
+            {
+                MessageBox.Show("Last name is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (txtPostalCode.Text == string.Empty)
+            {
+                MessageBox.Show("Postal Code is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (txtCity.Text == string.Empty)
+            {
+                MessageBox.Show("City is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (txtPassword.Password == string.Empty )
+            {
+                MessageBox.Show("Password is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            if (txtBirthDate.SelectedDate == null)
+            {
+                MessageBox.Show("Birth Date is Required", "Missing info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+
+            return true;
+        }
         private void btn_Register_Click(object sender, RoutedEventArgs e)
         {
+           
             try
             {
+                if (!isValid())
+                {
+                    return;
+                }
+
                 int registerResult = controller.RegisterAccount(comboSelectionRole.Text,txtUsername.Text,txtPassword.Password,txtFirstName.Text,"",txtLastName.Text,DateTime.Now,"","");
 
                 if (registerResult >= 1)
