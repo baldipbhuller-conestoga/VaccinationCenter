@@ -216,6 +216,51 @@ namespace VaccinationCenter.Models
             }
         }
 
+        public static List<Booking> GetAllBookings()
+        {
+            try
+            {
+                
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Booking]", sqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlConn.Open();
+
+                // reads the result
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                List<Booking> bookingList = new List<Booking>();
+
+                // read all rows
+                while (sqlDataReader.Read())
+                {
+                    int BookingID = sqlDataReader.GetInt32(0);
+                    int AccountID = sqlDataReader.GetInt32(1);
+                    string ReferenceNo = sqlDataReader[2].ToString();
+                    int ClinicId = sqlDataReader.GetInt32(3);
+                    int DoseType = sqlDataReader.GetInt32(4);
+                    TimeSpan AppointmentTime = (TimeSpan)sqlDataReader[6];
+                    DateTime date = (DateTime)sqlDataReader[5];
+                    DateTime AppointmentDateTime = date + AppointmentTime;
+
+
+
+
+
+                    Booking bk = new Booking(AccountID, ReferenceNo, ClinicId,DoseType, AppointmentDateTime);
+                    bookingList.Add(bk);
+
+                }
+
+                sqlConn.Close();
+
+                return bookingList;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public static int InsertClinic(Clinic cl)
         {
             try
@@ -273,6 +318,29 @@ namespace VaccinationCenter.Models
             }
         }
 
+        public static int DeleteBooking(int id)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("DELETE FROM [Booking] WHERE BookingID = @ID", sqlConn);
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters.AddWithValue("@ID", id);
+
+                sqlConn.Open();
+
+                // return rows affected
+                int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+                sqlConn.Close();
+
+                return rowsAffected;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
         public static int InsertBooking(int accID, string referenceNumber, int clinicID, int doseType, string appDate, string appTime)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VaccinationCenter"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="800" Width="500" WindowStyle="None" WindowStartupLocation="Manual" ShowInTaskbar="False" ResizeMode="CanMinimize" >
+        mc:Ignorable="d" Height="800" Width="500" WindowStyle="None" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="51*"/>

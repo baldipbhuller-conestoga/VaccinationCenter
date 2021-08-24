@@ -13,6 +13,7 @@ namespace VaccinationCenter
         private Account loggedinAccount;
         private List<Account> accountList;
         private List<Clinic> clinicList;
+        private List<Booking> bookingList;
 
         // for generating reference number
         private const string alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -20,6 +21,7 @@ namespace VaccinationCenter
         public List<Account> AccountList { get => accountList; set => accountList = value; }
         public List<Clinic> ClinicList { get => clinicList; set => clinicList = value; }
         public Account LoggedinAccount { get => loggedinAccount; set => loggedinAccount = value; }
+        public List<Booking> BookingList { get => bookingList; set => bookingList = value; }
 
         // Do not allow controller to be created in other classes
         private Controller()
@@ -84,7 +86,10 @@ namespace VaccinationCenter
         {
             ClinicList = DBAccess.GetAllClinics();
         }
-
+        public void LoadBooking()
+        {
+            BookingList = DBAccess.GetAllBookings();
+        }
         public int AddClinic(string locationName, string postalCode, int capacity)
         {
             LoadClinics();
@@ -117,19 +122,31 @@ namespace VaccinationCenter
             return false;
         }
 
-        public int BookAppointment(string locationName,int doseType,DateTime dt)
+        public bool RemoveBooking(int id)
+        {
+            int resultRows = DBAccess.DeleteBooking(id);
+
+            if (resultRows == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public int BookAppointment(string locationName,int doseType, DateTime selectTime, DateTime selectDate)
         {
             LoadClinics();
 
-            Clinic clinicFound = ClinicList.Find(c => c.LocationName == locationName);
+            Clinic clinicFound = ClinicList.Find(c => c.LocationName.ToLower() == locationName.ToLower());
 
             int accID = LoggedinAccount.AccountID;
             int clID = clinicFound.ClinicID;
 
             string reference = GenerateReference();
 
-            string date = dt.Date.ToString("yyyy-MM-dd");
-            string time = dt.ToString("HH:mm");
+            string date = selectDate.ToString("yyyy-MM-dd");
+            string time = selectTime.ToString("HH:mm");
 
 
             int idResult = DBAccess.InsertBooking(accID, reference, clID, doseType, date, time);
